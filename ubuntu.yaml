@@ -15,5 +15,32 @@
 
   - name: Reboot when packages were updated
     reboot:
-      post_reboot_delay: 30
+      post_reboot_delay: 5
     when: apt_update_status.changed
+
+  - name: Install latest version of Apache
+    apt:
+      name=apache2 state=latest
+
+  - name: Install PHP
+    apt:
+      name=php state=latest
+
+  - name: Install PHPMyadmin
+    apt:
+      name=phpmyadmin state=latest
+
+  - name: Install Mysql
+    apt:
+      name=mysql-server state=latest
+
+
+  - name: copy Index.php to webroot
+    template:
+      src: /root/ansible/index.php
+
+      dest: /var/www/html
+  - name: Remove index.html
+    ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
