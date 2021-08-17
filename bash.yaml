@@ -6,4 +6,5 @@
     template:
       src:  /root/ansible/linux
       dest: /root/linux
-  -  script: /root/linux
+  #-  script: /root/linux
+  - shell:   /root/linux
