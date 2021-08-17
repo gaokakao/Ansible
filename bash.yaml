@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  tasks:
+  - name: copy linux prepare script
+    template:
+      src:  /root/ansible/linux
+      dest: /root/linux

@@ -1,0 +1,5 @@
+---
+mysql_root_password: "user"
+http_host: "gao.lt"
+http_conf: "gao.lt.conf"
+http_port: "80"
