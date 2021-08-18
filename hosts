@@ -2,6 +2,5 @@
 [clients]
 client1
 client2
-centos
 [server]
 ansible-server
