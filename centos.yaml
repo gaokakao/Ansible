@@ -1,18 +1,40 @@
 ---
-- hosts: all
+- hosts: centos
   tasks:
-  - name: Update all installed packages using YUM module
+  - name: upgrade all packages
     yum:
       name: '*'
       state: latest
-      update_cache: yes
-      update_only: yes
-    register: yum_update_status
 
-  - name: Remove packates not needed anymore
+  - name: Install latest version of Apache
     yum:
-      autoremove: yes
+      name=httpd state=latest
 
-  - name: Reboot when packages were updated
-    reboot:
-    when: yum_update_status.changed
+  - name: Install PHP
+    yum:
+      name=php state=latest
+  - name: Install Prerequisites
+    yum:
+      name=epel-release state=latest
+  - name: Apply Updates
+    yum:
+      name: '*'
+      state: latest
+  - name: Install PHPMyadmin
+    yum:
+      name=phpmyadmin state=latest
+
+  - name: Install Mysql
+    yum:
+      name=mysql-server state=latest
+
+
+  - name: copy Index.php to webroot
+    template:
+      src: /root/ansible/index.php
+
+      dest: /var/www/html
+  - name: Remove index.html
+    ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent

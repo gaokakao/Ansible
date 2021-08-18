@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: clients
   tasks:
   - name: Update all installed packages using APT module
     apt:
@@ -33,7 +33,8 @@
   - name: Install Mysql
     apt:
       name=mysql-server state=latest
-
+  - name: Install PHPMyadmin
+    apt: name=phpmyadmin state=present
 
   - name: copy Index.php to webroot
     template:
