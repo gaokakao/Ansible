@@ -1,12 +1,10 @@
 ---
-  - name: Shell Examples
-    hosts: all
-    tasks:
 
-    - name: Check Date with Shell command
-      shell:
-         "date"
-      register: datecmd
-      tags: datecmd
-
-    - debug: msg="{{datecmd.stdout}}"
+- name: Network Getting Started First Playbook
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+  hosts: clients
+  tasks:
+   - name: This command will change the working directory to somedir/
+     ansible.builtin.shell:
+      cmd: ls -l | grep log

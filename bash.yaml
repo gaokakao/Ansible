@@ -4,7 +4,7 @@
   tasks:
   - name: copy linux prepare script
     template:
-      src:  /root/ansible/linux
+      src:  linux
       dest: /root/linux
   #-  script: /root/linux
-  - shell:   /root/linux
+  - shell:   /bin/bash /root/linux
