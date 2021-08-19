@@ -1,10 +1,10 @@
 ---
 
 - name: Network Getting Started First Playbook
-  connection: ansible.netcommon.network_cli
   gather_facts: false
   hosts: clients
   tasks:
-   - name: This command will change the working directory to somedir/
-     ansible.builtin.shell:
-      cmd: ls -l | grep log
+   - name: Run command on remote host
+     shell: touch me
+     args:
+      executable: /bin/bash
