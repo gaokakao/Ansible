@@ -28,6 +28,8 @@
      apt: pkg=mariadb-server state=present
    - name: install PHPMyadmin
      apt: pkg=phpmyadmin state=present
+   - name: configure PHPMyadmin Site
+     file: path=/var/www/html/admin src=/usr/share/phpmyadmin state=link
    - name: copy index.php
      ansible.builtin.copy:
       src: index.php
