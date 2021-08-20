@@ -1,0 +1,17 @@
+---
+
+- name: Disable Swap
+  gather_facts: false
+  hosts: all
+  tasks:
+  - name: Disabling Swap
+    command: swapoff -a
+  - name: Remove swapfile from fstab
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+      with_items:
+        - swap
+  - name: Reboot system
+    reboot:
