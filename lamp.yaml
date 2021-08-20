@@ -4,7 +4,30 @@
   gather_facts: false
   hosts: clients
   tasks:
-   - name: Run command on remote host
+   - name: Touch Me :)
      shell: touch me
      args:
       executable: /bin/bash
+   - name: Update system
+     shell: apt-get update
+     args:
+      executable: /bin/bash
+   - name: Upgrade system
+     shell: apt-get -y upgrade && apt-get -y dist-upgrade
+     args:
+      executable: /bin/bash
+   - name: Clean Up
+     shell: apt-get -y autoremove && apt-get autoclean
+     args:
+      executable: /bin/bash
+      # - name: Reboot after Update
+      # reboot:
+      #  reboot_timeout: 10
+   - name: install Apache
+     apt: pkg=apache2 state=present
+   - name: install PHP
+     apt: pkg=php state=present
+   - name: install MySql
+     apt: pkg=mysql-server state=present
+   - name: install PHPMyadmin
+     apt: pkg=phpmyadmin state=present
