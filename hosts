@@ -6,3 +6,7 @@ client3
 client4
 [server]
 ansible-server
+
+[aws]
+
+3.120.185.13
