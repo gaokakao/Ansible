@@ -1,33 +1,46 @@
 ---
 
-- name: Network Getting Started First Playbook
+- name: Update Servers and Install LAMP
   gather_facts: false
   hosts: clients
   tasks:
-   - name: Touch Me :)
-     shell: touch me
-     args:
-      executable: /bin/bash
-   - name: Update system
-     shell: apt-get update
-     args:
-      executable: /bin/bash
+   - name: Udate system
+     apt: update_cache=yes force_apt_get=yes
    - name: Upgrade system
-     shell: apt-get -y upgrade && apt-get -y dist-upgrade
-     args:
-      executable: /bin/bash
-   - name: Clean Up
-     shell: apt-get -y autoremove && apt-get autoclean
-     args:
-      executable: /bin/bash
-      # - name: Reboot after Update
-      # reboot:
-      #  reboot_timeout: 10
+     apt: upgrade=dist force_apt_get=yes
+   - name: Check if a reboot is needed on all servers
+     register: reboot_required_file
+     stat: path=/var/run/reboot-required get_md5=no
+
+   - name: Reboot the box if kernel updated
+     reboot:
+      msg: "Reboot initiated by Ansible for kernel updates"
+     when: reboot_required_file.stat.exists
+   - name: Install Python
+     apt: pkg=python3 state=present
    - name: install Apache
      apt: pkg=apache2 state=present
    - name: install PHP
      apt: pkg=php state=present
-   - name: install MySql
-     apt: pkg=mysql-server state=present
+   - name: Remove Mysql
+     apt: pkg=mysql-server state=absent
+   - name: install MariaDb
+     apt: pkg=mariadb-server state=present
    - name: install PHPMyadmin
      apt: pkg=phpmyadmin state=present
+   - name: copy index.php
+     ansible.builtin.copy:
+      src: index.php
+      dest: /var/www/html
+   - name: Delete index.html
+     ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
+   - name: Touch Me :)
+     shell: touch me
+     args:
+      executable: /bin/bash
+
+  handlers:
+   - name: restart Apache
+     service: name=apache2 state=restarted
