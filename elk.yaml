@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+   - name: remove Apache
+     apt: pkg=apache2 state=absent
+   - name: Install Java
+     apt: pkg=default-jre state=present
+   - name: Copy Script
+     ansible.builtin.copy:
+       src: /ansible/prepare.sh
+       dest: /root/prepare.sh
+       mode: '777'
+   - name: Run Script
+     command: /tmp/prepare.sh
+   - name: Install Elasticsearch
+     apt: pkg=elasticsearch state=present
+   - name: Install Kibana
+     apt: pkg=kibana state=present
+   - name: Install Logstash
+     apt: pkg=logstash state=present
