@@ -1,0 +1,16 @@
+---
+- name: Install Midnight Commander
+  apt:
+    name: "mc"
+    state: latest
+- name: Create directory for MC config
+  file:
+    path: /root/.config/mc/
+    state: directory
+
+- name: Make Internal Editor Default
+        
+  blockinfile:
+    path: /root/.config/mc/
+    block: |
+      use_internal_edit=true

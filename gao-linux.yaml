@@ -1,37 +1,7 @@
 ---
 - hosts: all
-  tasks:
-    - name: Update Pacages
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-    - name: Upgrade  Servers
-      apt:
-        name: "*"
-        state: latest
-    - name: Install MC
-      apt:
-        name: "mc"
-        state: latest
-    - name: Install Hyper-V Tools #1
-      package:
-        name: [ linux-virtual ]
-        state: latest
-    - name: Install Hyper-V Tools #2
-      package:
-        name: [ linux-cloud-tools-virtual ]
-        state: latest
-
-    - name: Install Hyper-V Tools #3
-      package:
-        name: [ linux-tools-virtual ]
-        state: latest
-    - name: insert modules names 
-      blockinfile:
-       path: /etc/initramfs-tools/modules
-       block: |
-        hv_vmbus
-        hv_storvsc
-        hv_blkvsc
-        hv_netvsc
-
-    - name: Rebuild InitRam
-      command: update-initramfs -u
+  roles:
+  - update
+#  - virt
+  - apparmor
+#  - mc
