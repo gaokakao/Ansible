@@ -11,40 +11,6 @@
       apt:
         name: "mc"
         state: latest
-    - name: Shutdown Services
-      service:
-        name: apparmor
-        state: stopped
-        enabled: false
-
-    - name: teardown
-      command: |
-        aa-teardown
-      register: teardown
-      failed_when: false
-      changed_when: false
-
-    - name: Remove Apparmor Packages
-      package:
-        name: [ apparmor ]
-        state: absent
-        iignore_errors: yes
-
-    - name: remove apparmor-related files or directories
-      file:
-        path: "{{ item }}"
-        state: absent
-      loop:
-       - /etc/apparmor
-       - /etc/apparmor.d
-       - /etc/rcS.d/S01apparmor
-       - /etc/rcS.d/K01apparmor
-       - /etc/init.d/apparmor
-       - /usr/lib/apparmor
-       - /var/lib/snapd/apparmor
-       - /var/cache/apparmor
-       - /etc/systemd/system/apparmor.service
-
     - name: Install Hyper-V Tools #1
       package:
         name: [ linux-virtual ]
