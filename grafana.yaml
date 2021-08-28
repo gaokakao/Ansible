@@ -1,0 +1,5 @@
+---
+- hosts: grafana
+  gather_facts: no
+  roles:
+   - role: grafana

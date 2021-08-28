@@ -1,0 +1,23 @@
+---
+- hosts: all
+  ignore_unreachable: yes
+  tasks:
+   - name: Update apt-get repo and cache
+     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+     #apt:
+     #update_cache: yes
+     #force_apt_get: yes
+     #cache_valid_time: 30
+   - name: Upgrade all apt packages
+     apt: upgrade=dist force_apt_get=yes
+
+   - name: Check if a reboot is required
+     command: "[ -f /var/run/reboot-required ]"
+     failed_when: False
+     register: reboot
+     #changed_when: reboot_required.rc == 0
+     notify: reboot
+
+  handlers:
+   - name: reboot
+     command: init 6
