@@ -1,11 +1,45 @@
 ---
-
 - hosts: all
-  gather_facts: no
   tasks:
-  - name: copy linux prepare script
-    template:
-      src:  linux
-      dest: /root/linux
-  #-  script: /root/linux
-  - shell:   /bin/bash /root/linux
+    - name: Update Pacages
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    - name: Upgrade  Servers
+      apt:
+        name: "*"
+        state: latest
+    - name: Install MC
+      apt:
+        name: "mc"
+        state: latest
+    - name: Shutdown Services
+      service:
+        name: apparmor
+        state:  stopped
+        enabled:  false
+
+    - name: teardown
+      command: |
+        aa-teardown
+      register: teardown
+      failed_when: false
+      changed_when: false
+
+    - name: Remove Apparmor Packages
+      package:
+        name: [ apparmor ]
+        state: absent
+
+    - name: remove apparmor-related files or directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+      - /etc/apparmor
+      - /etc/apparmor.d
+      - /etc/rcS.d/S01apparmor
+      - /etc/rcS.d/K01apparmor
+      - /etc/init.d/apparmor
+      - /usr/lib/apparmor
+      - /var/lib/snapd/apparmor
+      - /var/cache/apparmor
+      - /etc/systemd/system/apparmor.service

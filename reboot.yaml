@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - name: Reboot Server
+      command: init 6
