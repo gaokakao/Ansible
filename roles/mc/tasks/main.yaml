@@ -11,7 +11,17 @@
 #  file:
 #    path:  /root/.config/mc
 #    state: directory
-- name: Make MC use Internal Editor
+
+- name: Create Confi File
+  copy:
+    content: ""
+    dest: /root/.config/mc/ini
+    force: yes
+    group: sys
+    owner: root
+    mode: 0555
+
+- name: Make Internal Editor Default
   lineinfile:
     path: /root/.config/mc/ini
     search_string: 'use_internal_edit=false'

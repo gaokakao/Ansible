@@ -1,0 +1,13 @@
+---
+- name: Set up multiple authorized keys
+  authorized_key:
+    user: root
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - public.pub
+
+- name: Restart SSH Service
+  ansible.builtin.service:
+    name: ssh
+    state: reloaded

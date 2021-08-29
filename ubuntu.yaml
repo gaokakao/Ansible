@@ -1,8 +1,10 @@
 ---
-- hosts: clients
+- hosts: new
   roles:
-  #- update
-  #- virt
-  #- apparmor
-  #- mc
+  - ssh
+  - update
+  - virt
+  - apparmor
+  - mc
   - alias
+  - reboot
