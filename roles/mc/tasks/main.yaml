@@ -3,14 +3,19 @@
   apt:
     name: "mc"
     state: latest
-- name: Create directory for MC config
+- name: Create config directory
   file:
-    path: /root/.config/mc/
+    path:  /root/.config/mc
     state: directory
-
-- name: Make Internal Editor Default
-        
-  blockinfile:
-    path: /root/.config/mc/
-    block: |
-      use_internal_edit=true
+#- name: Create MC config directory
+#  file:
+#    path:  /root/.config/mc
+#    state: directory
+- name: Make MC use Internal Editor
+  lineinfile:
+    path: /root/.config/mc/ini
+    search_string: 'use_internal_edit=false'
+    line: use_internal_edit=true
+    owner: root
+    group: root
+    mode: '0644'
