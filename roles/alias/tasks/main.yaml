@@ -1,11 +1,7 @@
 ---
-- name: Copy Alias.txt
+- name: Add Aliases
   copy:
-    src: alias.txr
+    src: alias.txt
     dest: "/root/alias.txt"
-#- name: Add Aliases to Root Profile
-#-name: Add text block from a file
-#  blockinfile: path=destinationFile block={{lookup('file', 'sourceFile')}} create=yes state=present
-
 - name: Append Alias to /root/.bashrc
-  shell: echo "{{ lookup('file', 'alias.txt') }}" >> /root/.bashrc
+  shell: cat /root/alias.txt >> /root/.bashrc

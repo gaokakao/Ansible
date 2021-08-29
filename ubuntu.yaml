@@ -1,8 +1,8 @@
 ---
 - hosts: clients
   roles:
-  - update
-  - virt
-  - apparmor
-  - mc
+  #- update
+  #- virt
+  #- apparmor
+  #- mc
   - alias
