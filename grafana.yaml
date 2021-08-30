@@ -1,5 +1,6 @@
 ---
 - hosts: grafana
+<<<<<<< HEAD
   vars:
     influx_host: influxdb
     influx_database: influxdb
@@ -17,3 +18,7 @@
     grafana_datasource_url: http://influxdb:8086
   roles:
    - influx-register-grafana
+=======
+  roles:
+    - influx-register-grafana
+>>>>>>> d8b03fd68da72e0462dfc2b88d2ebec86b06f383

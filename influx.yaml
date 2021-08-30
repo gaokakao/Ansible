@@ -1,6 +1,7 @@
 ---
 - hosts: influxdb
   vars:
+<<<<<<< HEAD
         influx_host: 127.0.0.1
         influx_database: giedrius
         influx_admin_username: admin
@@ -15,3 +16,24 @@
   roles:
         - influxdb
         - influx-create-db
+=======
+    influx_host: 10.0.0.8
+    influx_database: influxdb
+    influx_admin_username: admin
+    influx_admin_password: admin
+    influx_user: admin
+    influx_password: admin
+    influxdb_admin_pass: admin
+    influxdb_port: 8086
+    telegraf_influx_url: http://influxdb:8086
+    telegraf_influx_db: influx
+    grafana_url: http://grafana:3000
+    grafana_user: admin
+    grafana_password: admin
+    grafana_datasource_url: http://influxdb:8086
+
+  roles:
+    - influxdb
+    - telegraf
+    #- influx-create-db
+>>>>>>> d8b03fd68da72e0462dfc2b88d2ebec86b06f383
