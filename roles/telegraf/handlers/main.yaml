@@ -1,0 +1,12 @@
+---
+- name: telegraf restart
+  set_fact:
+    telegraf_state: restarted
+  changed_when: true
+  notify: telegraf reload
+
+- name: telegraf reload
+  service:
+    name: telegraf
+    enabled: yes
+    state: "{{ telegraf_state | default('reloaded') }}"

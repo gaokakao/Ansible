@@ -1,0 +1,53 @@
+---
+- name: Add influx repo file
+  copy: src=etc/yum.repos.d/influxdb.repo dest=/etc/yum.repos.d owner=root group=root mode=0644
+  tags: [ "install" ]
+  when: ansible_os_family == 'RedHat'
+
+- name: Import InfluxData GPG signing key [Debian/Ubuntu]
+  apt_key:
+    url: "https://repos.influxdata.com/influxdb.key"
+    state: present
+  tags: [ "install" ]
+  when: ansible_os_family == 'Debian'
+
+- name: Add InfluxData repository [Debian/Ubuntu]
+  apt_repository:
+    repo: deb https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
+    state: present
+  tags: [ "install" ]
+  when: ansible_os_family == 'Debian'
+
+- name: Install telegraf
+  package:
+    name: telegraf
+    state: "{{ 'latest' if upgrade is defined else 'present' }}"
+  notify:
+    - telegraf restart
+  tags: [ "install" ]
+
+- name: Copy default telegraf config
+  copy:
+    src: etc/telegraf/telegraf.conf
+    dest: /etc/telegraf
+    owner: root
+    group: root
+    mode: 0644
+  tags: [ "install" ]
+
+- name: Add telegraf configs
+  template: src=etc/telegraf/{{ item }} dest=/etc/telegraf/telegraf.d owner=root group=root mode=0644
+  with_items:
+    - 0outputs.influxdb.conf
+    - inputs.chrony.conf
+    - inputs.net.conf
+    - inputs.netstat.conf
+  notify:
+    - telegraf reload
+  tags: [ "install" ]
+
+- meta: flush_handlers
+
+- name: Start and enable telegraf
+  service: name=telegraf state=started enabled=yes
+  tags: [ "install" ]

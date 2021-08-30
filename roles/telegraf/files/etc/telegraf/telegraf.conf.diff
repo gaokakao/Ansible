@@ -1,0 +1,11 @@
+--- telegraf.conf.orig	2021-01-28 00:29:54.000000000 +0200
++++ telegraf.conf	2021-02-15 14:46:19.901982588 +0200
+@@ -102,7 +102,7 @@
+ 
+ 
+ # Configuration for sending metrics to InfluxDB
+-[[outputs.influxdb]]
++#[[outputs.influxdb]]
+   ## The full HTTP or UDP URL for your InfluxDB instance.
+   ##
+   ## Multiple URLs can be specified for a single cluster, only ONE of the

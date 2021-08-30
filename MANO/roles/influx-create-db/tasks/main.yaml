@@ -1,0 +1,58 @@
+---
+- name: "Create influxdb database {{ influx_database }}"
+  local_action:
+    module: influxdb_database
+    hostname: "{{ influx_host }}"
+    username: "{{ influx_admin_username }}"
+    password: "{{ influx_admin_password }}"
+    ssl: yes
+    validate_certs: yes
+    database_name: "{{ influx_database }}"
+  run_once: true
+  tags: [ install ]
+- name: "Apply retention policy to {{ influx_database }}"
+  local_action:
+    module: influxdb_retention_policy
+    hostname: "{{ influx_host }}"
+    database_name: "{{ influx_database }}"
+    username: "{{ influx_admin_username }}"
+    password: "{{ influx_admin_password }}"
+    ssl: yes
+    validate_certs: yes
+    policy_name: "{{ influx_retention_policy_name }}"
+    default: yes
+    duration: "{{ influx_retention_duration }}"
+    replication: 1
+    shard_group_duration: "{{ influx_shard_duration }}"
+  run_once: true
+  tags: [ install ]
+- name: "Create influxdb user {{ influx_user }}"
+  local_action:
+    module: influxdb_user
+    hostname: "{{ influx_host }}"
+    username: "{{ influx_admin_username }}"
+    password: "{{ influx_admin_password }}"
+    ssl: yes
+    validate_certs: yes
+    user_name: "{{ influx_user }}"
+    user_password: "{{ influx_password }}"
+    grants:
+      - database: "{{ influx_database }}"
+        privilege: 'ALL'
+  run_once: true
+  tags: [ install ]
+
+
+
+- name: Create influxdb datasource
+  community.grafana.grafana_datasource:
+    name: "datasource-influxdb"
+    grafana_url: "https://grafana.company.com"
+    grafana_user: "admin"
+    grafana_password: "xxxxxx"
+    org_id: "1"
+    ds_type: "influxdb"
+    ds_url: "https://influx.company.com:8086"
+    database: "telegraf"
+    time_interval: ">10s"
+    tls_ca_cert: "/etc/ssl/certs/ca.pem"
