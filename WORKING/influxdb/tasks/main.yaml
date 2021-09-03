@@ -16,10 +16,6 @@
   notify: influxdb restart
   tags: [ install, influxdb ]
 
-#- name: Set admin credentials
-#  shell: influx -execute "CREATE USER admin WITH PASSWORD '{{ influxdb_admin_pass }}' WITH ALL PRIVILEGES"
-#  tags: [ configure, influxdb ]
-
 - name: Copy influxdb config file
   template:
     src: influxdb.conf
@@ -40,26 +36,23 @@
     enabled: yes
     daemon_reload: yes
   tags: [ install, influxdb ]
-
-- name: Install Python Pip
+- name: Install Python package manager
   package:
     name: python3-pip
     state: present
-- name: Install required Python modules
+- name: Install Python modules
   pip:
     name:
     - requests
     - influxdb
 - name: Set admin credentials
   influxdb_user:
-    user_name: "admin"
-    user_password: "{{ influxdb_admin_pass }}"
-    state: present
+    user_name: "{{influx_admin_username}}"
+    user_password: "{{influx_admin_password}}"
     admin: yes
-
-- name: Enable Influx auth
+    state: present
+- name: Set auth-enabled = true in influxdb.conf
   lineinfile:
     regexp: 'auth-enabled = false'
     line: 'auth-enabled = true'
     path: /etc/influxdb/influxdb.conf
-  
