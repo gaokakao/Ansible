@@ -1,12 +1,11 @@
 alias ll='ls -alF --time-style=long-iso -r -h '
-alias add="apt-get -y install"
-alias update="apt-get update -qq  && apt-get  -y upgrade -qq  && apt-get  -y dist-upgrade -qq "
+alias add="dnf -y install"
+alias update="dnf update && dnf  -y upgrade"
 
-alias remove="apt-get -y remove"
-alias search="apt-cache search"
-alias purge="apt-get -y purge"
+alias remove="dnf -y remove"
+alias search="dnf search"
+
 alias tailf="tail -f "
-alias error="tailf /var/log/apache2/error.log"
-alias access="tailf /var/log/apache2/access.log"
+alias error="tailf /var/log/httpd/error.log"
+alias access="tailf /var/log/httpd/access.log"
 alias work="cd /var/www/html"
-alias grep='grep -i'

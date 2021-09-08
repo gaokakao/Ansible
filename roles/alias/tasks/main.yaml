@@ -1,7 +1,14 @@
 ---
 - name: Add Aliases
-  copy:
-    src: alias.txt
-    dest: "/root/alias.txt"
-- name: Append Alias to /root/.bashrc
-  shell: cat /root/alias.txt >> /root/.bashrc
+  blockinfile:
+    path: /root/.bashrc
+    block: |
+       alias ll="ls -alF --time-style=long-iso -r -h"
+       alias add="dnf -y install"
+       alias update="dnf update && dnf  -y upgrade"
+       alias remove="dnf -y remove"
+       alias search="dnf search"
+       alias tailf="tail -f "
+       alias error="tailf /var/log/httpd/error.log"
+       alias access="tailf /var/log/httpd/access_log"
+       alias work="cd /var/www/html"

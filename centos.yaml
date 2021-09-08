@@ -1,0 +1,9 @@
+---
+- hosts: main
+  gather_facts: yes
+  become: yes
+
+  roles:
+   - alias
+   - virtual-tools
+   - update

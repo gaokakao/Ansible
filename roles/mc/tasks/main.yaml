@@ -3,23 +3,12 @@
   apt:
     name: "mc"
     state: latest
-- name: Create config directory
-  file:
-    path:  /root/.config/mc
-    state: directory
-#- name: Create MC config directory
-#  file:
-#    path:  /root/.config/mc
-#    state: directory
-
-- name: Create Confi File
-  copy:
-    content: ""
-    dest: /root/.config/mc/ini
-    force: yes
-    group: sys
-    owner: root
-    mode: 0555
+  when: ansible_facts['os_family'] == "Debian"
+- name: Install Midnight Commander
+  yum:
+    name: "mc"
+    state: latest
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Make Internal Editor Default
   lineinfile:
@@ -29,3 +18,4 @@
     owner: root
     group: root
     mode: '0644'
+    create: yes
