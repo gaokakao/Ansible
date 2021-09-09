@@ -12,3 +12,4 @@
        alias error="tailf /var/log/httpd/error.log"
        alias access="tailf /var/log/httpd/access_log"
        alias work="cd /var/www/html"
+       alias ports="netstat -antupl4 | grep LISTEN"
