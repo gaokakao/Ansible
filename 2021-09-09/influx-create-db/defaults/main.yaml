@@ -1,0 +1,14 @@
+---
+influx_user: "{{ influx_database }}"
+influx_password: "{{ lookup('password', lookup('env', 'PWD') + '/private/influx/' + influx_database + '/' + influx_user + ' length=24 chars=ascii_letters') }}"
+influx_retention_duration: 90d
+influx_shard_duration: 1h
+influx_retention_policy_name: "3 months"
+
+data_source:
+  - name: Influx
+    ds_type: "influxdb"
+    url: "http://influxdb:8086"
+    grafana_url: "http://grafana:3000"
+    user: "admin"
+    password: "admin"

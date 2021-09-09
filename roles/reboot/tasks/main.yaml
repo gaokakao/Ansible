@@ -1,2 +1,2 @@
-- name: Reboot Server
-  command: init 6
+- name: Unconditionally reboot the machine with all defaults
+  reboot:

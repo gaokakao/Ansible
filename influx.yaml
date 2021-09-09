@@ -1,0 +1,32 @@
+---
+- hosts: hetzner
+  vars:
+  influx_host: 127.0.0.1
+  influx_database: influxdb
+  influx_admin_username: admin
+  influx_admin_password: admin
+  influx_retention_policy_name: default
+  influx_retention_duration: 90d
+  influx_shard_duration: 1d
+  grafana_password: "YtwTIRZ7ywuuqWZfE0Ud"
+  influxdb_port: 8003
+  - role: influxdb
+  - tags: [ influxdb ]
+  - role: loggly2influx
+    tags: [ loggly2influx ]
+  - role: nginx-common
+    acme: yes
+    nginx_vhosts:
+      - vhost: influx.ab.duok5.tv
+        proxy_set_header: [ 'X-Forwarded-For $remote_addr' ]
+        proxy_config:
+          include_services:
+            default:
+             - servers: [ 'unix:/var/lib/influxdb/influxdb.sock' ]
+               locations:
+                 - paths: [ '/' ]
+                   http: true
+                   settings: [ 'proxy_buffering off', 'client_max_body_size 100m' ]
+        https_port: 8086
+    tags: [ vhosts ]
+  - role: influx-create-db
