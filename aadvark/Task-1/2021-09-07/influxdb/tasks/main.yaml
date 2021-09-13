@@ -1,4 +1,15 @@
 ---
+<<<<<<< HEAD
+
+#- name: Add influxdb repo file
+#  copy:
+#    src: influxdb.repo
+#    dest: /etc/yum.repos.d
+#    owner: root
+#    group: root
+#    mode: 0644
+#  tags: [ install, influxdb ]
+=======
 - name: Add influxdb repo file
   copy:
     src: influxdb.repo
@@ -7,14 +18,25 @@
     group: root
     mode: 0644
   tags: [ install, influxdb ]
+>>>>>>> d8b03fd68da72e0462dfc2b88d2ebec86b06f383
 
 - name: Install influx
   package:
     name: influxdb
-    enablerepo: influxdb
+    # enablerepo: influxdb
     state: present
   notify: influxdb restart
   tags: [ install, influxdb ]
+
+<<<<<<< HEAD
+- name: Set admin credentials
+  command: influx -username admin -password {{ influxdb_admin_pass }} -execute "CREATE USER admin WITH PASSWORD '{{ influxdb_admin_pass }}' WITH ALL PRIVILEGES" -database internal
+  tags: [ configure, influxdb ]
+=======
+#- name: Set admin credentials
+#  shell: influx -execute "CREATE USER admin WITH PASSWORD '{{ influxdb_admin_pass }}' WITH ALL PRIVILEGES"
+#  tags: [ configure, influxdb ]
+>>>>>>> d8b03fd68da72e0462dfc2b88d2ebec86b06f383
 
 - name: Copy influxdb config file
   template:
@@ -36,23 +58,3 @@
     enabled: yes
     daemon_reload: yes
   tags: [ install, influxdb ]
-- name: Install Python package manager
-  package:
-    name: python3-pip
-    state: present
-- name: Install Python modules
-  pip:
-    name:
-    - requests
-    - influxdb
-- name: Set admin credentials
-  influxdb_user:
-    user_name: "{{influx_admin_username}}"
-    user_password: "{{influx_admin_password}}"
-    admin: yes
-    state: present
-- name: Set auth-enabled = true in influxdb.conf
-  lineinfile:
-    regexp: 'auth-enabled = false'
-    line: 'auth-enabled = true'
-    path: /etc/influxdb/influxdb.conf

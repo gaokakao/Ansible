@@ -1,2 +1,2 @@
-- name: Unconditionally reboot the machine with all defaults
+- name: Reboot Server 
   reboot:

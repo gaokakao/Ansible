@@ -4,13 +4,16 @@
     name: apparmor
     state: stopped
     enabled: false
+  when: ansible_os_family == "Ubuntu"
 - name: teardown
   command: aa-teardown
+  when: ansible_os_family == "Ubuntu"
 - name: Remove Apparmor Packages
   package:
     name: [ apparmor ]
     state: absent
     ignore_errors: yes
+  when: ansible_os_family == "Ubuntu"
 - name: remove apparmor-related files or directories
   file:
     path: "{{ item }}"
@@ -25,3 +28,4 @@
       - /var/lib/snapd/apparmor
       - /var/cache/apparmor
       - /etc/systemd/system/apparmor.service
+  when: ansible_os_family == "Ubuntu"

@@ -1,21 +1,15 @@
 ---
 - name: Install Midnight Commander
-  apt:
-    name: "mc"
-    state: latest
-  when: ansible_facts['os_family'] == "Debian"
-- name: Install Midnight Commander
-  yum:
-    name: "mc"
-    state: latest
-  when: ansible_facts['os_family'] == "RedHat"
+  package:
+   name: "mc"
+   state: latest
 
-- name: Make Internal Editor Default
-  lineinfile:
-    path: /root/.config/mc/ini
-    search_string: 'use_internal_edit=false'
-    line: use_internal_edit=true
-    owner: root
-    group: root
-    mode: '0644'
-    create: yes
+#- name: Make Internal Default MC Editor
+#  lineinfile:
+#    path: /root/.config/mc/ini
+#    search_string: 'use_internal_edit=false'
+#    line: use_internal_edit=true
+#    owner: root
+#    group: root
+#    mode: '0644'
+#    create: yes

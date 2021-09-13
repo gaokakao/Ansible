@@ -36,6 +36,12 @@
     enabled: yes
     daemon_reload: yes
   tags: [ install, influxdb ]
+
+- name: Install Python Request module
+  package:
+    name: python3-requests
+    state: present
+
 - name: Install Python package manager
   package:
     name: python3-pip
@@ -43,16 +49,7 @@
 - name: Install Python modules
   pip:
     name:
-    - requests
     - influxdb
-- name: Set admin credentials
-  influxdb_user:
-    user_name: "{{influx_admin_username}}"
-    user_password: "{{influx_admin_password}}"
-    admin: yes
-    state: present
-- name: Set auth-enabled = true in influxdb.conf
-  lineinfile:
-    regexp: 'auth-enabled = false'
-    line: 'auth-enabled = true'
-    path: /etc/influxdb/influxdb.conf
+#- name: Set admin credentials
+#  shell: influx -execute "CREATE USER admin WITH PASSWORD '{{ influxdb_admin_pass }}' WITH ALL PRIVILEGES"
+#  tags: [ configure, influxdb ]

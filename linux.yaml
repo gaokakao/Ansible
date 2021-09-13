@@ -1,0 +1,14 @@
+---
+- hosts: all
+  roles:
+    - ssh
+    - alias
+
+    - selinux
+    - disable-swap
+    - firewalld
+    - update
+    - mc
+    - virtual-tools
+    - apparmor    
+    - reboot

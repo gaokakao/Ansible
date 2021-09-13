@@ -1,0 +1,8 @@
+---
+- hosts: influx-grafana-test.duok5.tv
+  roles:
+    - role: create-hcloud
+      vars:
+        hcloud_location: nbg1
+        hcloud_type: cx11
+        hcloud_var_volume_size: 10

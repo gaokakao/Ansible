@@ -1,16 +1,17 @@
 ---
-- name: Install Ubuntu & Debian Updates
+
+- name: Update Debian
   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   when: ansible_facts['os_family'] == "Debian"
 
-#- name: Upgrade  Debian & Ububtu
-#  apt:
-#    name: "*"
-#    state: latest
-#  when: ansible_facts['os_family'] == "Debian"
+- name: Upgrade  Debian
+  apt:
+    name: "*"
+    state: latest
+  when: ansible_facts['os_family'] == "Debian"
 
-#- name: install Centos Updates
-#  yum:
-#    name: "*"
-#    state: latest
-#  when: ansible_facts['os_family'] == "CentOS"
+- name: Update CentOS
+  yum:
+    name: "*"
+    state: latest
+  when: ansible_facts['os_family'] == "CentOS"
