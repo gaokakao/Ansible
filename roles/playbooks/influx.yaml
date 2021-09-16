@@ -1,15 +1,17 @@
 ---
-- hosts: all
+- hosts: centos
   vars:
         influx_host: 127.0.0.1
         influx_database: influxdb
         influx_admin_username: admin
         influx_admin_password: admin
+        influx_user: admin
+        influx_password: admin
+        influxdb_admin_pass: admin
         influxdb_port: 8086
-
-        grafana_url: "https://grafana.ab.duok5.tv"
-        grafana_user: admin
-        grafana_password: "YtwTIRZ7ywuuqWZfE0Ud"
+        influx_retention_policy_name: default
+        influx_retention_duration: 99d
+        influx_shard_duration: 1d
   roles:
         - influxdb
         - influx-create-db

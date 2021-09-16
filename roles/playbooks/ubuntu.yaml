@@ -1,0 +1,10 @@
+---
+- hosts: new
+  roles:
+  - ssh
+  - update
+  - virt
+  - mc
+  - alias
+  - apparmor
+  - reboot

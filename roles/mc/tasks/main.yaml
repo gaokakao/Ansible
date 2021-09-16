@@ -4,12 +4,26 @@
    name: "mc"
    state: latest
 
-#- name: Make Internal Default MC Editor
-#  lineinfile:
-#    path: /root/.config/mc/ini
-#    search_string: 'use_internal_edit=false'
-#    line: use_internal_edit=true
-#    owner: root
-#    group: root
-#    mode: '0644'
-#    create: yes
+- name: Set Internal Editor Default Midnight Commander Editor => .bash_profile
+  blockinfile:
+    path: /root/.bash_profile
+    create: yes
+    block: |
+       EDITOR=mcedit 
+       aVISUAL=$EDITOR
+       export EDITOR VISUAL
+
+- name: Set Internal Editor Default Midnight Commander Editor => .profile
+  blockinfile:
+    path: /root/.profile
+    create: yes
+    block: |
+       EDITOR=mcedit 
+       aVISUAL=$EDITOR
+       export EDITOR VISUAL
+
+
+
+
+- name:  Make Midnight Commander Exit Same Directory Script
+  script: script.sh

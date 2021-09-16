@@ -1,0 +1,59 @@
+---
+
+- name: Update Servers and Install LAMP
+  gather_facts: false
+  hosts: clients
+  tasks:
+   - name: Udate system
+     apt: update_cache=yes force_apt_get=yes
+   - name: Upgrade system
+     apt: upgrade=dist force_apt_get=yes
+   - name: Check if a reboot is needed
+     register: reboot_required_file
+     stat: path=/var/run/reboot-required get_md5=no
+
+   - name: Reboot the box if kernel updated
+     reboot:
+      msg: "Reboot initiated by Ansible for kernel updates"
+     when: reboot_required_file.stat.exists
+   - name: Install Python
+     apt: pkg=python3 state=present
+   - name: install Apache
+     apt: pkg=apache2 state=present
+   - name: install PHP
+     apt: pkg=php state=present
+   - name: Remove Mysql
+     apt: pkg=mysql-server state=absent
+   - name: install MariaDb
+     apt: pkg=mariadb-server state=present
+   - name: install PHPMyadmin
+     apt: pkg=phpmyadmin state=present
+   - name: configure PHPMyadmin Site
+     file: path=/var/www/html/admin src=/usr/share/phpmyadmin state=link
+   - name: copy index.php
+     ansible.builtin.copy:
+      src: index.php
+      dest: /var/www/html
+   - name: Delete index.html
+     ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
+   - name: Touch Me :)
+     shell: touch me
+     args:
+      executable: /bin/bash
+   #   - name: Create database user
+   #     community.mysql.mysql_user:
+   #      name: user
+   #      password: user
+   #      priv: '*.*:ALL'
+   #      state: present
+   - name: Change user password
+     user:
+      name: root
+      update_password: always
+      password: "{{ newpassword|password_hash('sha512') }}"
+
+  handlers:
+   - name: restart Apache
+     service: name=apache2 state=restarted

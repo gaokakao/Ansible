@@ -1,11 +1,11 @@
 ---
   - name: Install Prerequisites
-    action: apt pkg={{item}} state=latest
+    action: package pkg={{item}} state=latest
     with_items:
       - linux-cloud-tools-virtual
       - linux-tools-virtual
       - linux-virtual
-    when: ansible_facts['os_family'] == "Ubuntu"
+    when: ansible_facts['os_family'] == "Debian"
   - name: Insert module names in Initram
     blockinfile:
       path: /etc/initramfs-tools/modules
@@ -14,8 +14,11 @@
         hv_storvsc
         hv_blkvsc
         hv_netvsc
-    when: ansible_facts['os_family'] == "Ubuntu"
+    when: ansible_facts['os_family'] == "Debian"
 
   - name: Rebuild InitRam
     command: update-initramfs -u
-    when: ansible_facts['os_family'] == "Ubuntu"
+    when: ansible_facts['os_family'] == "Debian"
+  - name: Reboot Server 
+    reboot:
+    when: ansible_facts['os_family'] == "Debian"

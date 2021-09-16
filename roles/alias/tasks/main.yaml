@@ -13,14 +13,3 @@
        alias access="tailf /var/log/httpd/access_log"
        alias work="cd /var/www/html"
        alias ports="netstat -antupl4 | grep LISTEN"
-
-
-- name: Add Environment Variables that set Internal Editor => Default for Midnight Commander 
-  blockinfile:
-    path: /root/.profile
-    block: |
-       EDITOR=mcedit 
-       aVISUAL=$EDITOR
-       export EDITOR VISUAL
-
-
