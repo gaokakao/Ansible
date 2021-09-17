@@ -1,29 +1,27 @@
 ---
 - name: Install Midnight Commander
-  package:
+  apt:
    name: "mc"
    state: latest
+  when: ansible_facts['os_family'] == "Debian"
 
-- name: Set Internal Editor Default Midnight Commander Editor => .bash_profile
+
+- name:  Default MC Editor #1
   blockinfile:
     path: /root/.bash_profile
     create: yes
     block: |
-       EDITOR=mcedit 
+       EDITOR=mcedit
        aVISUAL=$EDITOR
        export EDITOR VISUAL
 
-- name: Set Internal Editor Default Midnight Commander Editor => .profile
+- name: Default MC Editor #2
   blockinfile:
     path: /root/.profile
     create: yes
     block: |
-       EDITOR=mcedit 
+       EDITOR=mcedit
        aVISUAL=$EDITOR
        export EDITOR VISUAL
-
-
-
-
 - name:  Make Midnight Commander Exit Same Directory Script
   script: script.sh

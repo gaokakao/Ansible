@@ -1,13 +1,12 @@
 ---
 - hosts: all
   roles:
-#    - ssh
-#    - alias
-#    - firewalld
-#    - selinux
-#    - apparmor
+    - ssh
+    - alias
+    - firewalld
+    - selinux
+    - apparmor
+    - update
+    - mc
+#    - virtual-tools
 #    - disable-swap
-#    - mc
-#    - update
-    - virtual-tools
-
