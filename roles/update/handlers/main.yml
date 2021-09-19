@@ -1,5 +1,3 @@
 ---
-# handlers file for update
-handlers:
-   - name: reboot
-     command: /sbin/reboot
+- name: reboot
+  command: /sbin/reboot
