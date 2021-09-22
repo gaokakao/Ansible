@@ -1,4 +1,5 @@
 ---
+- name: Reboot All Servers
 - hosts: all
   tasks:
     - name: Reboot Server

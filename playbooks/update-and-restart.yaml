@@ -1,4 +1,5 @@
 ---
+- name: Update Servers and restart
 - hosts: all
   ignore_unreachable: yes
   tasks:

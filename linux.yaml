@@ -8,5 +8,4 @@
     - apparmor
     - update
     - mc
-#    - virtual-tools
-#    - disable-swap
+    - swapon

@@ -1,4 +1,10 @@
-gaokakao.com
-kakao.lt
+[mano]
 gao.lt
-10.0.0.11
+kakao.lt
+gaokakao.com
+[new]
+35.210.146.8
+
+[visi:children]
+mano
+new

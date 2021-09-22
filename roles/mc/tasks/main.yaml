@@ -4,8 +4,7 @@
    name: "mc"
    state: latest
   when: ansible_facts['os_family'] == "Debian"
-
-
+    
 - name:  Default MC Editor #1
   blockinfile:
     path: /root/.bash_profile

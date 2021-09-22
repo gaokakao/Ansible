@@ -4,7 +4,7 @@
     name: apparmor
     state: stopped
     enabled: false
-  when: ansible_os_family == "Ubuntu"
+  when: ansible_os_family == "Dbuntu"
 - name: teardown
   command: aa-teardown
   when: ansible_os_family == "Ubuntu"

@@ -1,4 +1,5 @@
 ---
+- name: Print Server Operating System
 - hosts: localhost
   gather_facts: yes
   become: false

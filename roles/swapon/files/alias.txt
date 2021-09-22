@@ -1,0 +1,11 @@
+alias ll='ls -alF --time-style=long-iso -r -h '
+alias add="dnf -y install"
+alias update="dnf update && dnf  -y upgrade"
+
+alias remove="dnf -y remove"
+alias search="dnf search"
+
+alias tailf="tail -f "
+alias error="tailf /var/log/httpd/error.log"
+alias access="tailf /var/log/httpd/access.log"
+alias work="cd /var/www/html"
