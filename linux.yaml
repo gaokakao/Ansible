@@ -8,4 +8,4 @@
     - apparmor
     - update
     - mc
-    - swapon
+#    - swapon
