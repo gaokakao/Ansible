@@ -4,7 +4,7 @@
     - ssh
     - alias
     - firewalld
-    - selinux
+#    - selinux
     - apparmor
     - update
     - mc

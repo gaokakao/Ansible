@@ -1,15 +1,16 @@
 ---
 - name: Add Aliases
   blockinfile:
-    path: /root/.bashrc
+    path: /root/.bash_profile
     block: |
        alias ll="ls -alF --time-style=long-iso -r -h"
-       alias add="dnf -y install"
-       alias update="dnf update && dnf  -y upgrade"
-       alias remove="dnf -y remove"
-       alias search="dnf search"
+       alias add="apt-get -y install"
+       alias update="apt-get update && apt-get  -y upgrade && apt-get -y dist-upgrade"
+       alias remove="apt-get  -y remove"
+       alias search="apt-cache search"
        alias tailf="tail -f "
        alias error="tailf /var/log/httpd/error.log"
        alias access="tailf /var/log/httpd/access_log"
        alias work="cd /var/www/html"
        alias ports="netstat -antupl4 | grep LISTEN"
+    create: true
