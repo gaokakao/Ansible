@@ -20,7 +20,13 @@
     create: yes
     block: |
        EDITOR=mcedit
-       aVISUAL=$EDITOR
+       VISUAL=$EDITOR
        export EDITOR VISUAL
 - name:  Make Midnight Commander Exit Same Directory Script
   script: script.sh
+
+- name: Ensure MC is default Editor
+  ansible.builtin.lineinfile:
+    path: /root/.config/mc/ini
+    regexp: '^SELINUX=use_internal_edit=true'
+    line: SELINUX=use_internal_edit=false
