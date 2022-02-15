@@ -10,7 +10,19 @@
     state: latest
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Update CentOS
+
+- name: Update Ubuntu
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  when: ansible_facts['os_family'] == "Ubuntu"
+
+- name: Upgrade  Ubuntu
+  apt:
+    name: "*"
+    state: latest
+  when: ansible_facts['os_family'] == "Ubuntu"
+
+
+- name: Update RedHat
   yum:
     name: "*"
     state: latest

@@ -1,8 +1,8 @@
 ---
 
 - name: Disable SELinux
-  ansible.posix.selinux:
-  state: disabled
+  selinux:
+    state: disabled
   when: ansible_facts['os_family'] == "CentOS"
 
 - name: Unconditionally reboot the machine with all defaults

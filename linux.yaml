@@ -2,10 +2,10 @@
 - hosts: all
   roles:
     - ssh
-    - alias
     - firewalld
-#    - selinux
+    - selinux
     - apparmor
     - update
     - mc
 #    - swapon
+    - alias
