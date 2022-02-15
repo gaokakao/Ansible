@@ -4,29 +4,28 @@
    name: "mc"
    state: latest
   when: ansible_facts['os_family'] == "Debian"
-    
-- name:  Default MC Editor #1
-  blockinfile:
-    path: /root/.bash_profile
-    create: yes
-    block: |
-       EDITOR=mcedit
-       aVISUAL=$EDITOR
-       export EDITOR VISUAL
 
-- name: Default MC Editor #2
-  blockinfile:
-    path: /root/.profile
-    create: yes
-    block: |
-       EDITOR=mcedit
-       VISUAL=$EDITOR
-       export EDITOR VISUAL
 - name:  Make Midnight Commander Exit Same Directory Script
   script: script.sh
+
+# name: Creates Config path directory
+# file:
+#   path:  /root/.config/mc
+#   state: directory
+
+# name: Create MC Config file if one does not exist!
+# copy:
+#   content: ""
+#   dest:  /root/.config/mc/ini
+#   group: root
+#   owner: root
+#    mode: 0555
+#    create: yes
+
 
 - name: Ensure MC is default Editor
   ansible.builtin.lineinfile:
     path: /root/.config/mc/ini
-    regexp: '^SELINUX=use_internal_edit=true'
-    line: SELINUX=use_internal_edit=false
+    regexp: 'use_internal_edit=false'
+    line: 'use_internal_edit=true'
+    create: yes
