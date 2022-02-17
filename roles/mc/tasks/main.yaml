@@ -8,24 +8,16 @@
 - name:  Make Midnight Commander Exit Same Directory Script
   script: script.sh
 
-# name: Creates Config path directory
-# file:
-#   path:  /root/.config/mc
-#   state: directory
+ name: Creates Config path directory
+ file:
+   path:  /root/.config/mc
+   state: directory
 
-# name: Create MC Config file if one does not exist!
-# copy:
-#   content: ""
-#   dest:  /root/.config/mc/ini
-#   group: root
-#   owner: root
-#    mode: 0555
-#    create: yes
+- name: Make MC internal default Editor
 
-
-- name: Ensure MC is default Editor
-  ansible.builtin.lineinfile:
-    path: /root/.config/mc/ini
-    regexp: 'use_internal_edit=false'
-    line: 'use_internal_edit=true'
-    create: yes
+  ansible.builtin.copy:
+    src: /ini
+    dest: /root/config/mc
+    owner: root
+    group: root
+    mode: '0644'
