@@ -1,16 +1,27 @@
 ---
+
+- name: ensure profile file exists
+  copy:
+    content: ""
+    dest: /root/.bash_profile
+    force: no
+    group: root
+    owner: root
+    mode: 0555
+
 - name: Add Aliases
   blockinfile:
     path: /root/.bash_profile
     block: |
        alias ll="ls -alF --time-style=long-iso -r -h"
        alias add="apt-get -y install"
-       alias update="apt-get update && apt-get  -y upgrade && apt-get -y dist-upgrade"
+       alias update="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
        alias remove="apt-get  -y remove"
+       alias purge="apt-get  -y purge"
        alias search="apt-cache search"
-       alias tailf="tail -f "
+       alias tailf="tail -f"
        alias error="tailf /var/log/httpd/error.log"
        alias access="tailf /var/log/httpd/access_log"
+       alias ports="lsof -i  -P -n"
        alias work="cd /var/www/html"
-       alias ports="netstat -antupl4 | grep LISTEN"
-    create: true
+       
