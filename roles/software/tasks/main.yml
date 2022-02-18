@@ -1,0 +1,7 @@
+---
+#  Install Required Software
+
+- name: Install Prerequisites
+  apt:
+    name: ["net-tools"]
+    state: latest

@@ -7,5 +7,6 @@
     - apparmor
     - update
     - mc
-#    - swapon
+#   - swapon
     - alias
+    - software
