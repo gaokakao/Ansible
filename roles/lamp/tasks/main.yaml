@@ -1,9 +1,4 @@
 ---
-
-- name: Update Servers and Install LAMP
-  gather_facts: false
-  hosts: clients
-  tasks:
    - name: Udate system
      apt: update_cache=yes force_apt_get=yes
    - name: Upgrade system
@@ -38,22 +33,17 @@
      ansible.builtin.file:
       path: /var/www/html/index.html
       state: absent
-   - name: Touch Me :)
-     shell: touch me
-     args:
-      executable: /bin/bash
-   #   - name: Create database user
-   #     community.mysql.mysql_user:
-   #      name: user
-   #      password: user
-   #      priv: '*.*:ALL'
-   #      state: present
-   - name: Change user password
-     user:
-      name: root
-      update_password: always
-      password: "{{ newpassword|password_hash('sha512') }}"
 
-  handlers:
-   - name: restart Apache
-     service: name=apache2 state=restarted
+   - name: Install Pip
+     apt: pkg=pip state=latest
+
+   - name: Install pmysql Python module
+     pip:
+       name: pymysql
+
+   - name: Create database user
+     mysql_user:
+       name: 'user'
+       password: user
+       priv: '*.*:ALL'
+       state: present
