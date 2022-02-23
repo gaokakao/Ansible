@@ -47,3 +47,4 @@
        password: user
        priv: '*.*:ALL'
        state: present
+       check_implicit_admin: yes
