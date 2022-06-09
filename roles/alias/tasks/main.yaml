@@ -15,7 +15,7 @@
     block: |
        alias ll="ls -alF --time-style=long-iso -r -h"
        alias add="apt-get -y install"
-       alias update="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
+       alias update="apt-get update -qq && apt-get -y upgrade -qq && apt-get -qq -y dist-upgrade"
        alias remove="apt-get  -y remove"
        alias purge="apt-get  -y purge"
        alias search="apt-cache search"
