@@ -8,5 +8,7 @@
     - update
     - mc
 #   - swapon
+#   - swapoff
     - alias
     - software
+    - git

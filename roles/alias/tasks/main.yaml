@@ -14,7 +14,7 @@
     path: /root/.bash_profile
     block: |
        alias ll="ls -alF --time-style=long-iso -r -h"
-       alias add="apt-get -y install"
+       alias add="apt-get -y -qq install"
        alias update="apt-get update -qq && apt-get -y upgrade -qq && apt-get -qq -y dist-upgrade"
        alias remove="apt-get  -y remove"
        alias purge="apt-get  -y purge"

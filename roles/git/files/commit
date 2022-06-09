@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# add all files
+
+git add -A
+
+# create new commit
+
+git commit -m "$1"
+
+# push changes to remote
+git push
