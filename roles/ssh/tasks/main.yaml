@@ -1,4 +1,5 @@
 ---
+
 - name: Set up multiple authorized keys
   authorized_key:
     user: root
@@ -6,3 +7,11 @@
     key: '{{ item }}'
   with_file:
     - public.pub
+
+- name: Disable Strict Host Key Chekcing
+  copy:
+    src: config
+    dest: /root/.ssh/config
+    owner: root
+    group: root
+    mode: '0644' 

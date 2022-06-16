@@ -4,7 +4,7 @@
     - ssh
     - firewalld
     - selinux
-    - apparmor
+#    - apparmor
     - update
     - mc
 #   - swapon
