@@ -3,26 +3,24 @@
   roles:
     - ssh
 
-# Disable Stuff :)
-
-#   - firewalld
-#   - selinux
-#   - apparmor
-
-# Mandatory
-
+############
+# Mandatory #
+###########
     - update
     - mc
     - alias
-    - vim		# Configure Vim Colors
-    - git		# Configure git commit script commit
-    - software		# Install net-tools and lsof
+    - vim  # Configure Vim Colors
+    - git  # Configure git commit script commit
+    - software  # Install net-tools and lsof
 
-#		#
-# Optional	#
-#		#
-		#
-#   - swapon		# Turn Swap On and create  swap file
-#   - swapoff		# Turn Swap Off and delete swap file
-#   - guest-tools	# Install Hyper-V Guest Tools
-#   - elk		# Install ELK Stack Elastic Beanstalk Logstash & Kibana
+############
+# Optional #
+###########
+
+#   - apparmor
+#   - forewalld
+#   - selinux
+#   - swapon      # Turn Swap On and create  swap file
+#   - swapoff     # Turn Swap Off and delete swap file
+#   - guest-tools # Install Hyper-V Guest Tools
+#   - elk         # Install ELK Stack Elastic Beanstalk Logstash & Kibana
