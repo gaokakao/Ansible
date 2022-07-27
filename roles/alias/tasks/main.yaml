@@ -22,7 +22,7 @@
        alias policy="apt-cache policy"
        alias tailf="tail -f"
        alias error="tailf /var/log/apache2/error.log"
-       alias access="tailf /var/log/httpd/access_log"
+       alias access="tailf /var/log/apache2/access_log"
        alias ports="netstat -ntupl4"
        alias work="cd /var/www/html"
        #alias ports="lsof -i  -P -n"
