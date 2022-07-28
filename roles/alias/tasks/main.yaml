@@ -26,4 +26,4 @@
        alias ports="netstat -ntupl4"
        alias work="cd /var/www/html"
        #alias ports="lsof -i  -P -n"
-       alias addresses="ip a s | grep inet | grep -v inet6"
+       alias adres="ip a s | grep inet | grep -v inet6"
