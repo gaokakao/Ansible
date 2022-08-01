@@ -13,6 +13,8 @@
   blockinfile:
     path: /root/.bash_profile
     block: |
+       force_color_prompt=yes
+       PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '
        alias ll="ls -alF --time-style=long-iso -r -h"
        alias add="apt-get -y -qq install"
        alias update="apt-get update -qq && apt-get -y upgrade -qq && apt-get -qq -y dist-upgrade"
@@ -25,5 +27,13 @@
        alias access="tailf /var/log/apache2/access.log"
        alias ports="netstat -ntupl4"
        alias work="cd /var/www/html"
-       #alias ports="lsof -i  -P -n"
        alias adres="ip a s | grep inet | grep -v inet6"
+       alias d="docker"
+       alias dc="docker-compose"
+
+- name: Make Bash Prompt Pretty
+  blockinfile:
+    path: /root/.bashrc
+    block: |
+       force_color_prompt=yes
+       PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '
