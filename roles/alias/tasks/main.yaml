@@ -30,6 +30,7 @@
        alias adres="ip a s | grep inet | grep -v inet6"
        alias d="docker"
        alias dc="docker-compose"
+       alias grep="grep --color"
 
 - name: Make Bash Prompt Pretty
   blockinfile:
