@@ -1,5 +1,4 @@
 ---
-
 - name: ensure profile file exists
   copy:
     content: ""
