@@ -23,8 +23,13 @@
        alias policy="apt-cache policy"
        alias tailf="tail -f"
        alias error="tailf /var/log/apache2/error.log"
+<<<<<<< HEAD
+       alias access="tailf /var/log/httpd/access_log"
+       alias ports="netstat -ntupl| grep --color LISTEN"
+=======
        alias access="tailf /var/log/apache2/access.log"
        alias ports="netstat -ntupl4"
+>>>>>>> 02e437c5833e2aef8e3b4cbf1eb37b78db6e69c7
        alias work="cd /var/www/html"
        alias adres="ip a s | grep inet | grep -v inet6"
        alias d="docker"

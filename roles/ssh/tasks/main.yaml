@@ -7,6 +7,16 @@
     key: '{{ item }}'
   with_file:
     - public.pub
+<<<<<<< HEAD
+- name: Disable Host Key checking
+
+  ansible.builtin.copy:
+    src: config
+    dest: /root/.ssh/
+    owner: root
+    group: root
+    mode: '0644'
+=======
 
 - name: Disable Strict Host Key Chekcing
   copy:
@@ -15,3 +25,4 @@
     owner: root
     group: root
     mode: '0644' 
+>>>>>>> 02e437c5833e2aef8e3b4cbf1eb37b78db6e69c7

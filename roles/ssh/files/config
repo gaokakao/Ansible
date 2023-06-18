@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+host *
+    StrictHostKeyChecking no
+=======
 Host *
     StrictHostKeyChecking no
 
+>>>>>>> 02e437c5833e2aef8e3b4cbf1eb37b78db6e69c7
