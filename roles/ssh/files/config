@@ -1,13 +1,2 @@
-<<<<<<< HEAD
 host *
     StrictHostKeyChecking no
-=======
-<<<<<<< HEAD
-host *
-    StrictHostKeyChecking no
-=======
-Host *
-    StrictHostKeyChecking no
-
->>>>>>> 02e437c5833e2aef8e3b4cbf1eb37b78db6e69c7
->>>>>>> 150cabc9816985d3e5dcdb670692a047545fe3d3
