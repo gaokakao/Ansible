@@ -22,6 +22,6 @@
        alias tailf="tail -f"
        alias error="tailf /var/log/apache2/error.log"
        alias access="tailf /var/log/httpd/access_log"
-       alias ports="lsof -i  -P -n"
+       alias ports="netstat -ntupl| grep --color LISTEN"
        alias work="cd /var/www/html"
        
