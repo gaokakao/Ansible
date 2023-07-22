@@ -1,5 +1,4 @@
 ---
-
 - name: Set up multiple authorized keys
   authorized_key:
     user: root
@@ -15,8 +14,6 @@
     owner: root
     group: root
     mode: '0644'
-<<<<<<< HEAD
-=======
 - name: Disable Strict Host Key Chekcing
   copy:
     src: config
@@ -24,4 +21,3 @@
     owner: root
     group: root
     mode: '0644' 
->>>>>>> 150cabc9816985d3e5dcdb670692a047545fe3d3

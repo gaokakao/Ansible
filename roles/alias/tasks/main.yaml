@@ -25,11 +25,8 @@
        alias error="tailf /var/log/apache2/error.log"
        alias access="tailf /var/log/httpd/access_log"
        alias ports="netstat -ntupl| grep --color LISTEN"
-<<<<<<< HEAD
-=======
        alias access="tailf /var/log/apache2/access.log"
        alias ports="netstat -ntupl4"
->>>>>>> 150cabc9816985d3e5dcdb670692a047545fe3d3
        alias work="cd /var/www/html"
        alias adres="ip a s | grep inet | grep -v inet6"
        alias d="docker"
@@ -40,4 +37,3 @@
     path: /root/.bashrc
     block: |
        force_color_prompt=yes
-       PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '
