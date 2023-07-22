@@ -1,5 +1,4 @@
 ---
-
 - name: ensure profile file exists
   copy:
     content: ""
@@ -13,15 +12,32 @@
   blockinfile:
     path: /root/.bash_profile
     block: |
-       alias ll="ls -alF --time-style=long-iso -r -h"
-       alias add="apt-get -y install"
-       alias update="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
+       force_color_prompt=yes
+       PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '
+       alias ll="ls -alF --time-style=long-iso -r -h --color=auto"
+       alias add="apt-get -y -qq install"
+       alias update="apt-get update -qq && apt-get -y upgrade -qq && apt-get -qq -y dist-upgrade"
        alias remove="apt-get  -y remove"
        alias purge="apt-get  -y purge"
        alias search="apt-cache search"
+       alias policy="apt-cache policy"
        alias tailf="tail -f"
        alias error="tailf /var/log/apache2/error.log"
        alias access="tailf /var/log/httpd/access_log"
        alias ports="netstat -ntupl| grep --color LISTEN"
+<<<<<<< HEAD
+=======
+       alias access="tailf /var/log/apache2/access.log"
+       alias ports="netstat -ntupl4"
+>>>>>>> 150cabc9816985d3e5dcdb670692a047545fe3d3
        alias work="cd /var/www/html"
-       
+       alias adres="ip a s | grep inet | grep -v inet6"
+       alias d="docker"
+       alias dc="docker-compose"
+       alias grep="grep --color"
+- name: Make Bash Prompt Pretty
+  blockinfile:
+    path: /root/.bashrc
+    block: |
+       force_color_prompt=yes
+       PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '

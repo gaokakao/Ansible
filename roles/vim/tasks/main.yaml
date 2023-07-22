@@ -1,0 +1,8 @@
+---
+- name: Seting "correct"  Vim settings :)
+  ansible.builtin.copy:
+    src: .vimrc
+    dest: /root/.vimrc
+    owner: root
+    group: root
+    mode: '0644'
