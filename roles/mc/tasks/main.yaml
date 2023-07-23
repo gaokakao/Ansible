@@ -14,7 +14,7 @@
    state: directory
    recurse: yes
 
-- name: Make Midnight Commander internal default Editor
+- name: Make Midnight Commander Internal Editor Default choice
 
   ansible.builtin.copy:
     src: ini
