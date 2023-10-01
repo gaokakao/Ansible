@@ -1,6 +1,7 @@
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
 [Production]
-34.88.43.128# gao.lt Pihole DNS over Https
-[Development]
-35.245.42.250# OpenVPN
+34.88.43.128# GOOGLE gao.lt Pihole DNS over Https
+34.38.142.29 # Google seond VM 
+34.229.88.141 # AWS
+20.157.125.61 # AZURE
