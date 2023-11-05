@@ -1,0 +1,17 @@
+---
+
+- name: Update mand-db flag
+  command: >
+   echo "set man-db/auto-update false"  |
+   debconf-communicate;
+   dpkg-reconfigure man-db
+- name: Remove amndb package
+  apt:
+    name: mandb
+    state: absent
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Remove mandb cache
+  ansible.builtin.file:
+    path: /var/cache/man
+    state: absent

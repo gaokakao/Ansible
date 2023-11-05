@@ -5,6 +5,7 @@
 ############
 # Mandatory #
 ###########
+    - mandb # renive useless crap
     - update
     - mc
     - alias
