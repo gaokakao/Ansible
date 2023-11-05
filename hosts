@@ -1,5 +1,0 @@
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3
-[hosts]
-34.88.43.128 # Pihole
-35.246.99.18 # No Ads
