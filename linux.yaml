@@ -5,15 +5,15 @@
 ############
 # Mandatory #
 ###########
-    - mandb # remove useless crap mandb
-    - mc
-    - alias
-    - software
-    - ssh
-    - vim  # Configure Vim Colors
-    - git  # Configure git commit script commit
-    - software  # Install net-tools and lsof
-    - update
+   - mandb # remove useless crap mandb
+   - mc
+   - alias
+   - software
+   - ssh
+   - vim  # Configure Vim Colors
+   - git  # Configure git commit script commit
+   - software  # Install net-tools and lsof
+   - update
 
 ############
 # Optional #

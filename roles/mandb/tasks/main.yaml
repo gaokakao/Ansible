@@ -1,17 +1,19 @@
 ---
 
-- name: Update mand-db flag
-  command: >
-   echo "set man-db/auto-update false"  |
-   debconf-communicate;
-   dpkg-reconfigure man-db
 - name: Remove amndb package
   apt:
     name: mandb
     state: absent
+    purge: true
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Remove mandb cache
-  ansible.builtin.file:
-    path: /var/cache/man
-    state: absent
+- name: Change config files not to downloda man pages and remove everything !!!
+
+  ansible.builtin.copy:
+    src: 01_nodoc
+    dest: /etc/dpkg/dpkg.cfg.d/
+    owner: root
+    group: root
+    mode: '0644'
+- name: Remove all man files
+  script: script.sh
