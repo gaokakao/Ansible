@@ -3,5 +3,5 @@
 
 - name: Install Prerequisites
   apt:
-    name: ["net-tools","lsof","htop"]
+    name: ["net-tools","lsof","htop","git"]
     state: latest
