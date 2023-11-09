@@ -1,4 +1,4 @@
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
 [hosts]
-34.88.43.128 # 1
+127.0.0.1

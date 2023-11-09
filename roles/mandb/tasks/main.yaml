@@ -1,6 +1,6 @@
 ---
 
-- name: Remove amndb package
+- name: Remove mandb package
   apt:
     name: mandb
     state: absent
