@@ -1,9 +1,9 @@
 alias ll='ls -alF --time-style=long-iso -r -h '
-alias add="dnf -y install"
-alias update="dnf update && dnf  -y upgrade"
+alias add="apt-get -y install"
+alias update="apt-get update && apt-get  -y upgrade"
 
-alias remove="dnf -y remove"
-alias search="dnf search"
+alias remove="apt-get -y remove"
+alias search="apt-get search"
 
 alias tailf="tail -f "
 alias error="tailf /var/log/httpd/error.log"
